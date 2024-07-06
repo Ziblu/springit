@@ -3,10 +3,9 @@ package com.ziblu.springit.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.Objects;
 
 @Entity
 @Data
@@ -18,6 +17,6 @@ public class Comment {
     private Long id;
     private String body;
 
-    //link
-
+    @ManyToOne
+    private Link link;
 }
