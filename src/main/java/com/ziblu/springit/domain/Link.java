@@ -13,7 +13,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Link extends Auditable{
-
     @Id
     @GeneratedValue
     private Long id;
