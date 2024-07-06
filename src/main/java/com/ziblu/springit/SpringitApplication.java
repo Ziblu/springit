@@ -21,7 +21,7 @@ public class SpringitApplication {
 	//@Bean
 	CommandLineRunner runner(LinkRepository linkRepository, CommentRepository commentRepository){
 		return args -> {
-			Link link = new Link("Getting started with Spring Boot 3", "https://therealdanvega.com/spring-boot-2");
+			Link link = new Link("Getting started with Spring Boot 3", "https://danvega.dev/spring-boot-2");
 			linkRepository.save(link);
 
 			Comment comment = new Comment("This is link is awesome!", link);
