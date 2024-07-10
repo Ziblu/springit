@@ -74,7 +74,9 @@ public class SecurityConfiguration {
                                 .requestMatchers("/link/**").permitAll()
                                 .requestMatchers("/").permitAll()
                                 .requestMatchers("/h2-console/**").permitAll()
-                                .requestMatchers("/css/**", "/js/**", "/images/**", "/libs/**").permitAll() // Allow static resources
+                                .requestMatchers("/css/**", "/js/**", "/images/**", "/libs/**").permitAll()
+                                .requestMatchers("/register").permitAll()
+                                .requestMatchers("/profile").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
