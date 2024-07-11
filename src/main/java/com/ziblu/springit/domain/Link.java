@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import org.hibernate.validator.constraints.URL;
 import org.ocpsoft.prettytime.PrettyTime;
-
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDateTime;
@@ -42,10 +41,14 @@ public class Link extends Auditable{
     @OneToMany(mappedBy = "link")
     private List<Comment> comments = new ArrayList<>();
 
+    @OneToMany(mappedBy = "link")
+    private List<Vote> votes = new ArrayList<>();
+
+    private int voteCount = 0;
+
     public void addCommnet(Comment comment){
         comments.add(comment);
     }
-
     public String getDomainName() throws URISyntaxException {
         URI uri = new URI(this.url);
         String domain = uri.getHost();
