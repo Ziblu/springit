@@ -17,7 +17,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-
 //@EnableMethodSecurity(securedEnabled = true)
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
@@ -36,7 +35,6 @@ public class SecurityConfiguration {
     public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-
 
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception {
@@ -106,13 +104,10 @@ public class SecurityConfiguration {
         return http.build();
     }
 
-
-
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder auth = http.getSharedObject(AuthenticationManagerBuilder.class);
         auth.userDetailsService(userDetailsService);
         return auth.build();
     }
-
 }

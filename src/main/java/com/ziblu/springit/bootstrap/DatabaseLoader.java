@@ -1,5 +1,6 @@
 package com.ziblu.springit.bootstrap;
 
+import com.ziblu.springit.domain.Comment;
 import com.ziblu.springit.domain.Link;
 import com.ziblu.springit.domain.Role;
 import com.ziblu.springit.repository.RoleRepository;
@@ -51,8 +52,20 @@ public class DatabaseLoader implements CommandLineRunner {
         links.put("File download example using Spring REST Controller","https://www.jeejava.com/file-download-example-using-spring-rest-controller/");
 
         links.forEach((k,v) -> {
-            linkRepository.save(new Link(k,v));
+            Link link = new Link(k,v);
+            linkRepository.save(link);
+
+
+
             // we will do something with comments later
+            Comment spring = new Comment("Thank you for this link related to Spring Boot. I love it, great post!",link);
+            Comment security = new Comment("I love that you're talking about Spring Security",link);
+            Comment pwa = new Comment("What is this Progressive Web App thing all about? PWAs sound really cool.",link);
+            Comment comments[] = {spring,security,pwa};
+            for(Comment comment : comments) {
+                commentRepository.save(comment);
+                link.addCommnet(comment);
+            }
         });
 
         long linkCount = linkRepository.count();
