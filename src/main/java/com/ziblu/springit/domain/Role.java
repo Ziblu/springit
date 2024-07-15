@@ -14,9 +14,7 @@ import java.util.Collection;
 @ToString
 @NoArgsConstructor
 public class Role {
-
-    @Id
-    @GeneratedValue
+    @Id @GeneratedValue
     private Long id;
 
     @NonNull
