@@ -1,5 +1,6 @@
 package com.ziblu.springit.domain;
 
+import com.ziblu.springit.domain.validator.PasswordsMatch;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @NoArgsConstructor
+@PasswordsMatch
 public class User implements UserDetails {
 
     @Id
@@ -64,11 +66,11 @@ public class User implements UserDetails {
     @Column(nullable = false, unique = true)
     private String alias;
 
-//    @Transient
-//    @NotEmpty(message = "Please enter Password Confirmation")
-//    private String confirmPassword;
-//
-//    private String activationCode;
+    @Transient
+    @NotEmpty(message = "Please enter Password Confirmation")
+    private String confirmPassword;
+
+    private String activationCode;
 
     public String getFullName(){
         return firstName + " " + lastName;

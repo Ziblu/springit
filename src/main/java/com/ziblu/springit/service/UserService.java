@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -17,9 +19,12 @@ public class UserService {
     private final BCryptPasswordEncoder encoder;
     private final RoleService roleService;
 
-   public UserService(RoleService roleService, UserRepository userRepository){
+    private final MailService  mailService;
+
+   public UserService(RoleService roleService, UserRepository userRepository, MailService  mailService){
         this.roleService = roleService;
         this.userRepository = userRepository;
+        this.mailService = mailService;
         encoder = new BCryptPasswordEncoder();
     }
 
@@ -29,10 +34,13 @@ public class UserService {
         user.setPassword(secret);
 
         // confirm password
+        user.setConfirmPassword(secret);
 
         // assign a role to this user
         user.addRole(roleService.findByName("ROLE_USER"));
+
         // set an activation code
+        user.setActivationCode(UUID.randomUUID().toString());
 
         // disable the user
 
@@ -40,7 +48,6 @@ public class UserService {
         save(user);
         // send the activation email
         sendActivationEmail(user);
-
         // return the user
         return user;
     }
@@ -58,6 +65,10 @@ public class UserService {
     }
 
     public void sendActivationEmail(User user){
-       // do something ...
+       mailService.sendActivationEmail(user);
+    }
+
+    public void sendWelcomeEmail(User user){
+       mailService.sendWelcomeEmail(user);
     }
 }
