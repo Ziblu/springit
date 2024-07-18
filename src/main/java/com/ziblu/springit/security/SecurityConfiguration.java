@@ -79,6 +79,7 @@ public class SecurityConfiguration {
                                 .requestMatchers("/css/**", "/js/**", "/images/**", "/libs/**").permitAll()
                                 .requestMatchers("/register").permitAll()
                                 .requestMatchers("/profile").permitAll()
+                                .requestMatchers("/activate/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
