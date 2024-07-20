@@ -2,8 +2,6 @@ package com.ziblu.springit.controller;
 
 import com.ziblu.springit.domain.Comment;
 import com.ziblu.springit.domain.Link;
-import com.ziblu.springit.repository.CommentRepository;
-import com.ziblu.springit.repository.LinkRepository;
 import com.ziblu.springit.service.CommentService;
 import com.ziblu.springit.service.LinkService;
 import jakarta.validation.Valid;
