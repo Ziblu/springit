@@ -71,6 +71,7 @@ public class SecurityConfiguration {
                         authorizeRequests
                                 .requestMatchers(EndpointRequest.to("info")).permitAll()
                                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ACTUATOR")
+                                .requestMatchers("/h2-console/**").permitAll()
                                 .requestMatchers("/actuator/**").hasRole("ACTUATOR")
                                 .requestMatchers("/link/submit").hasRole("USER")
                                 .requestMatchers("/link/**").permitAll()
@@ -99,9 +100,9 @@ public class SecurityConfiguration {
                 .rememberMe(rememberMe -> rememberMe
                         .key("uniqueAndSecret")
                         .userDetailsService(userDetailsService)
-                );
-//                .csrf(csrf -> csrf.disable())
-//                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
+                )
+                .csrf(csrf -> csrf.disable())
+                .headers(headers -> headers.frameOptions(frameOptions -> frameOptions.disable()));
         return http.build();
     }
 

@@ -25,7 +25,7 @@
                 <a class="title " th:href="@{'/link/' + ${link.id}}" th:text="${link.title}">
                     Title Goes Here
                 </a>
-                <span class="domain">(<a th:href="${link.url}" th:text="${link.getDomainName()}">therealdanvega.com</a>)</span>
+                <span class="domain">(<a th:href="${link.url}" th:text="${link.getDomainName()}">localhost:8081/</a>)</span>
             </p>
             <p class="tagline ">submitted
                 <!--<time title="Sat Mar 10 06:26:36 2018 UTC" datetime="2018-03-10T06:26:36+00:00" class="live-timestamp">2 hours ago</time> by-->
@@ -63,7 +63,7 @@
         <div class="row comment" th:each="comment : ${link.getComments()}">
             <div class="col-1">&nbsp;</div>
             <div class="col-11">
-                <span><a href="#" th:text="${comment.getCreatedBy()}"><i class="far fa-user"></i> Ziblu</a></span>
+                <span><a href="#" th:text="${link.getUser().getAlias()}"><i class="far fa-user"></i> Ziblu</a></span>
                 <span th:text="${comment.getPrettyTime()}"><i class="far fa-clock"></i> 4 hours ago</span>
                 <p class="body" th:text="${comment.getBody()}">It’s one thing I never care about, new releases of maven. Yet I do for most other things.. I really should take a look at any features released in the last while! Pull my dependencies, run my tests and upload to nexus. I don’t care for much else, I wonder what if any I’m missing.</p>
                 <a href="#" class="permalink"><i class="fas fa-link"></i> permalink</a>
