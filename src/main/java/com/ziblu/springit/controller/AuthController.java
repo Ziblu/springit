@@ -38,7 +38,6 @@ public class AuthController {
     @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user", new User());
-//        model.addAttribute("success", false);
         return "auth/register";
     }
 

@@ -17,52 +17,14 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-//@EnableMethodSecurity(securedEnabled = true)
 @EnableMethodSecurity(securedEnabled = true)
 public class SecurityConfiguration {
 
     private UserDetailsServiceImpl userDetailsService;
-//    private final LogoutSuccessHandler logoutSuccessHandler;
-//    private final LogoutHandler logoutHandler;
-//    private final String[] cookieNamesToClear = {"JSESSIONID"};
-
-//    public SecurityConfiguration(UserDetailsServiceImpl userDetailsService, LogoutSuccessHandler logoutSuccessHandler, LogoutHandler logoutHandler) {
-//        this.userDetailsService = userDetailsService;
-//        this.logoutSuccessHandler = logoutSuccessHandler;
-//        this.logoutHandler = logoutHandler;
-//    }
 
     public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//      http
-//            .authorizeRequests()
-//            .requestMatchers(EndpointRequest.to("info")).permitAll()
-//            .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ACTUATOR")
-//            .antMatchers("/actuator/").hasRole("ACTUATOR")
-//            .antMatchers("/link/submit").hasRole("USER")
-//            .antMatchers("/link/**").permitAll()
-//            .antMatchers("/").permitAll()
-//            .antMatchers("/h2-console/**").permitAll()
-//            .and()
-//            .formLogin()
-//            .loginPage(/login)
-//            .permitAll()
-//            .and()
-//            .logout()
-//              .logoutUrl("/my/logout")
-//              .logoutSuccessUrl("/my/index")
-//              .logoutSuccessHandler(logoutSuccessHandler)
-//              .invalidateHttpSession(true)
-//              .addLogoutHandler(logoutHandler)
-//              .deleteCookies(cookieNamesToClear)
-//            .and()
-//            .csrf().disable()
-//            .headers().frameOptions().disable();
-//     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

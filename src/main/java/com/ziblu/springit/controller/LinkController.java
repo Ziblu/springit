@@ -67,23 +67,6 @@ public class LinkController {
         return "link/submit";
     }
 
-//    @PostMapping("/link/submit")
-//    public String createLink(@Valid Link link, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-//        if( bindingResult.hasErrors() ) {
-//            logger.info("Validation errors were found while submitting a new link.");
-//            model.addAttribute("link",link);
-//            return "link/submit";
-//        } else {
-//            // save our link
-//            linkService.save(link);
-//            logger.info("New Link was saved successfully.");
-//            redirectAttributes
-//                    .addAttribute("id", link.getId())
-//                    .addFlashAttribute("success",true);
-//            return "redirect:/link/{id}";
-//        }
-//    }
-
     @PostMapping("/link/submit")
     public String createLink(@Valid Link link, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, Principal principal) {
         if (bindingResult.hasErrors()) {
